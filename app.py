@@ -110,7 +110,7 @@ def get_users_list():
 # route for sign-up form: 
 @app.route('/users/new', methods=['GET'])
 def get_signup_form():
-    return render_template("signup_form.html")
+    return render_template("users.html")
 
 # route to create users:
 @app.route('/users', methods=['POST'])
