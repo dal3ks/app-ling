@@ -1,0 +1,26 @@
+<!-- Simple page html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Films</title>
+</head>
+<body>
+    <h1>My Films</h1>
+        <form action="/films" method="POST">
+            <input type="text" name="title" placeholder="Title">
+            <input type="text" name="genre" placeholder="Genre">
+            <input type="text" name="release_date" placeholder="Release Date">
+            <button type="submit">Submit</button>
+        </form>
+    <ul>
+    {% for film in films %}
+        <li>
+        {{ film.title }}
+        ({{ film.genre }},
+        {{ film.release_date }})
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
