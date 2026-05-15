@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, request, redirect, render_template, session
+app.secret_key = "some_really_secret_key"
 from book import Book
 from BookRepository import BookRepository
 from database_connection import DatabaseConnection
@@ -6,6 +7,7 @@ from film import Film
 from FilmRepository import FilmRepository
 from user import User
 from user_repository import UserRepository
+
 
 # instantiate a Flask app object
 app = Flask(__name__)
@@ -107,6 +109,7 @@ def get_users_list():
     repo = UserRepository(db)
     users= repo.all()
     return render_template("users.html", users=users)
+
 # route for sign-up form: 
 @app.route('/users/new', methods=['GET'])
 def get_signup_form():
@@ -122,6 +125,29 @@ def create_user():
     user = User(username=user_details["username"], password=user_details["password"])
     user_repository.create(user)
     return redirect("/users")
+
+#route for login form:
+@app.route('/sessions/new', methods=['GET'])
+def get_login_form():
+    return render_template("login_form.html")
+
+# route to POST /sessions:
+@app.route('/sessions', methods=['POST'])
+def submit_to_login_form():
+    connection = DatabaseConnection()
+    connection.connect()
+    user_repository = UserRepository(connection)
+    username = request.form["username"]
+    password = request.form["password"]
+
+    user = user_repository.find_by_username(username)
+
+    if user and user.password == password:
+        session["user_id"] = user.id
+        session["username"] = user.username
+        return redirect("/books")
+    else:
+        return redirect("/sessions/new")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5001, debug=False)
