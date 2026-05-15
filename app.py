@@ -1,5 +1,4 @@
 from flask import Flask, request, redirect, render_template, session
-app.secret_key = "some_really_secret_key"
 from book import Book
 from BookRepository import BookRepository
 from database_connection import DatabaseConnection
@@ -11,6 +10,7 @@ from user_repository import UserRepository
 
 # instantiate a Flask app object
 app = Flask(__name__)
+app.secret_key = "some_really_secret_key"
 
 # Declares a route that listens for a GET request to the path /hello
 # and a method to execute when that request comes in
@@ -72,6 +72,9 @@ def quotes():
 
 @app.route('/books', methods=['POST'])
 def create_book():
+    if "user_id" not in session:
+        return redirect("/sessions/new")
+    connection = DatabaseConnection()
     book_details = request.form #changed from request.json
     db = DatabaseConnection()
     db.connect()
