@@ -6,6 +6,7 @@ from film import Film
 from FilmRepository import FilmRepository
 from user import User
 from user_repository import UserRepository
+from login_required import login_required
 
 
 # instantiate a Flask app object
@@ -71,10 +72,8 @@ def quotes():
 # Adding first POST for /books:
 
 @app.route('/books', methods=['POST'])
+@login_required
 def create_book():
-    if "user_id" not in session:
-        return redirect("/sessions/new")
-    connection = DatabaseConnection()
     book_details = request.form #changed from request.json
     db = DatabaseConnection()
     db.connect()
