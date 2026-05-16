@@ -78,7 +78,7 @@ def create_book():
     db = DatabaseConnection()
     db.connect()
     repo = BookRepository(db)
-    book = Book(None, book_details["title"], book_details["author"])
+    book = Book(None, book_details["title"], book_details["author"], book_details["rating"])
     repo.create(book)
     print(book_details)
     return redirect("/books")

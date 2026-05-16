@@ -30,9 +30,21 @@ def test_book_list_contains_all_books(page: Page):
     #assert len(actual_books) >= 5
 
 def test_create_new_book(page: Page):
+
+    connection = DatabaseConnection()
+    connection.connect()
+    connection.execute("TRUNCATE TABLE users;")
+    connection.execute("INSERT INTO users (username, password) VALUES ('test', '1234');")
+
+    page.goto("http://127.0.0.1:5001/sessions/new")
+    page.get_by_placeholder("username").fill("test")
+    page.get_by_placeholder("password").fill("1234")
+    page.get_by_role("button").click()
+
     page.goto("http://127.0.0.1:5001/books")
     page.get_by_placeholder("Title").fill("Known and Strange Things")
     page.get_by_placeholder("Author").fill("Teju Cole")
+    page.get_by_placeholder("Rating").fill("4")
     page.get_by_role("button", name="Submit").click()
     books = page.locator('li')
     new_book = books.all_inner_texts()[-1]

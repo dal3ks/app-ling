@@ -11,13 +11,12 @@ class BookRepository:
         rows = self._connection.execute('SELECT * from books')
         books = []
         for row in rows:
-            item = Book(row["id"], row["title"], row["author"])
+            item = Book(row["id"], row["title"], row["author"], row["rating"])
             books.append(item)
         return books
-
 #Adding the benevolent secure create function
     def create(self,book):
-        self._connection.execute('INSERT INTO books (title, author) VALUES (%s, %s)',[book.title, book.author])
+        self._connection.execute('INSERT INTO books (title, author, rating) VALUES (%s, %s, %s)',[book.title, book.author, book.rating])
         return None
 
 # # Adding ye ol' risky biscuit: 

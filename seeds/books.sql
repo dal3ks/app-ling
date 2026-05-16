@@ -7,13 +7,14 @@ CREATE SEQUENCE IF NOT EXISTS books_id_seq;
 CREATE TABLE books (
     id SERIAL PRIMARY KEY,
     title text,
-    author text
+    author text,
+    rating int
 );
 
 
 -- The books!
-INSERT INTO books (title, author) VALUES ('Misinterpretation', 'Ledia Xhoga');
-INSERT INTO books (title, author) VALUES ('Drive Your Plow Over the Bones of the Dead', 'Olga Tokarczuk');
-INSERT INTO books (title, author) VALUES ('Infinite Jest', 'David Foster Wallace');
-INSERT INTO books (title, author) VALUES ('Blazing World', 'Margaret Cavendish');
-INSERT INTO books (title, author) VALUES ('The Silmarillion', 'J R R Tolkien');
+INSERT INTO books (title, author, rating) VALUES ('Misinterpretation', 'Ledia Xhoga', 4);
+INSERT INTO books (title, author, rating) VALUES ('Drive Your Plow Over the Bones of the Dead', 'Olga Tokarczuk', 4);
+INSERT INTO books (title, author, rating) VALUES ('Infinite Jest', 'David Foster Wallace', 3);
+INSERT INTO books (title, author, rating) VALUES ('Blazing World', 'Margaret Cavendish', 3);
+INSERT INTO books (title, author, rating) VALUES ('The Silmarillion', 'J R R Tolkien', 5);

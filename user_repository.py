@@ -21,9 +21,11 @@ class UserRepository:
     
     #function to find the user:
     def find_by_username(self, username):
-        user_details = self._connection.execute('SELECT* FROM users WHERE username = %s', [username])[0]
+        rows = self._connection.execute('SELECT * FROM users WHERE username = %s', [username])
+        if len(rows) == 0:
+            return None
+        user_details = rows[0]
         return User(
             user_details["username"],
             user_details["password"],
-            user_details["id"]
-        )
+            user_details["id"])
