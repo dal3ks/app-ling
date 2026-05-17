@@ -35,33 +35,14 @@ def get_team():
     team = ["Dorothy", "Rose", "Blanche", "Sophia"]
     return render_template("team.html", team=team)
 
-
-# adding new route for authors:
-@app.route('/authors', methods=['GET'])
-def authors():
-    return [
-    {
-    "name": "Julia Donaldson",
-    "dob": "1948-09-16"
-    },
-    {
-    "name": "Andrea Beaty",
-    "dob": "1961-10-08"
-    },
-    {
-    "name": "Kelly Barnhill",
-    "dob": "1973-01-01"
-    },
-    {
-    "name": "Zetta Elliott",
-    "dob": "1979-11-11"
-    }
-]
-
-# adding html route
+# adding html route for langing page:
 @app.route('/', methods=['GET'])
 def index():
-    return render_template("index.html")
+    db = DatabaseConnection()
+    db.connect()
+    repo = BookRepository(db)
+    books = repo.all()
+    return render_template("index.html", books=books)
 
 
 # adding function to get reading quotes:

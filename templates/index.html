@@ -4,59 +4,103 @@
     <meta charset="UTF-8" />
     <title> AlexReads</title>
     <style>
-        body {
-            font-family: Georgia, serif;
-            max-width 600px;
-            margin 60px auto;
-            padding 0 1rem;
-            background-size: cover;
-            background-image: url('/static/library.jpeg');
-            background-attachment: fixed; 
-            color: #521d1d;
-        }
-.container {
-    background: rgba(62, 47, 47, 0.6);
-    padding: 2rem;
-    color: rgb(159, 160, 188);
+nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 1rem 2rem;
+    z-index: 100;
 }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom:0.25rem;
-        }
-        p.tagline {
-            color: #a8a1c3;
-            margin-bottom: 2rem;
-            font-weight: bolder;
-        }
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(213, 194, 194, 0.958);}
-        li: last-child{
-            border-bottom: none;
-        }
-        .author {
-            color: #e0b0ff;
-            font-size: 0.75rem;
-            font-weight: bold;
-        }
-    </style>
+nav a {
+    color: #a8a1c3;
+    text-decoration: none;
+    letter-spacing: 0.1rem;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.5rem 1rem;
+}
+
+nav a:hover {
+    color: #e0b0ff;
+}
+    body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: Georgia, serif;
+    color: #a8a1c3;
+    background-image: url('/static/library.jpeg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(20, 10, 20, 0.6);
+    padding: 4rem;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0.25rem;
+    color: #d4c5e2;
+}
+
+p.tagline {
+    color: #a8a1c3;
+    margin-bottom: 2rem;
+    font-weight: bolder;
+}
+
+.cards {
+    display: flex;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.cards a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 280px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #a8a1c3;
+    text-decoration: none;
+    font-size: 1.1rem;
+    letter-spacing: 0.15rem;
+    transition: background 0.3s;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.cards a:hover {
+    background: rgba(255, 255, 255, 0.22);
+    color: #e0b0ff;
+}
+</style>
 </head>
 <body>
+    <nav>
+    <a href="/sessions/new">Log In</a>
+    
+</nav>
+
     <div class="container">
     <h1>Welcome to AlexReads!</h1>
     <p class="tagline">A cosy digital bookcorner.</p>
-    <h2> Current Books</h2>
-    <ul>
-        <li> The Gruffalo <span class="author">- Julia Donaldson</span></li>
-        <li> Ada Twist, Scientist <span class="author">- Andrea Beaty</span></li>
-        <li> The Girl Who Drank The Moon <span class="author">- Kelly Barnhill</span></li>
-        <li> Dragons in a Bag <span class="author">- Zetta Elliott</span></li>
-    </ul>
+    <div class="cards">
+        <a href="/books">Books</a>
+        <a href="/films">Films</a>
+    </div>
+
     </div>
 </body>
 </html>

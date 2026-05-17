@@ -1,17 +1,90 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    </head>
-    <body>
-        <h1>Sessions</h1>
+<head>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: Georgia, serif;
+    color: #a8a1c3;
+    background-image: url('/static/cy1kmn.jpeg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    width: 320px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.8rem;
+    color: #d4c5e2;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    display: block;
+    margin: 0.75rem auto;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: #a8a1c3;
+    font-family: Georgia, serif;
+    width: 100%;
+}
+
+button {
+    margin-top: 1.5rem;
+    padding: 0.75rem 2rem;
+    width: 100%;
+    background: rgba(224, 176, 255, 0.15);
+    border: 1px solid rgba(224, 176, 255, 0.3);
+    color: #e0b0ff;
+    font-family: Georgia, serif;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background: rgba(224, 176, 255, 0.25);
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>Log In</h1>
         <form action="/sessions" method="POST">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="username" required>
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="password" required>
-            
-
-            <button type="submit"> Log In</button>        
+            <button type="submit">Log In</button>
         </form>
-    </body>
+    </div>
+</div>
+</body>
 </html>
